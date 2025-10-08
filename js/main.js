@@ -1,20 +1,22 @@
-const intersectionObserver = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("is-in-view");
-    } else {
-      entry.target.classList.remove("is-in-view");
-    }
-  });
-});
-
-// 監視対象を追加
-const inViewItems =  document.querySelectorAll(".js-in-view ");
-inViewItems.forEach(function(inViewItems){
-  intersectionObserver.observe(inViewItems);
-});
-
 document.addEventListener("DOMContentLoaded", function () {
+  // Intersection Observer
+  const intersectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-in-view");
+      } else {
+        entry.target.classList.remove("is-in-view");
+      }
+    });
+  });
+
+  // 監視対象を追加
+  const inViewItems = document.querySelectorAll(".js-in-view");
+  inViewItems.forEach(function(item){
+    intersectionObserver.observe(item);
+  });
+
+  // ドロワーメニュー
   const drawerIcon = document.querySelector(".drawer_icon");
   const drawerContent = document.querySelector(".drawer_content");
 
@@ -22,14 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
     drawerIcon.classList.toggle("is-checked");
     drawerContent.classList.toggle("is-checked");
   });
-});
-// ドロワーメニューの要素
-const drawer = document.querySelector('.drawer_icon'); 
-
-// ドロワーが開く/閉じるアクション
-drawer.addEventListener('click', () => {
-  // body要素にクラスをトグル（付け外し）する
-  document.body.classList.toggle('is-drawer-open');
 });
 // QA
 document.addEventListener("DOMContentLoaded", () => {

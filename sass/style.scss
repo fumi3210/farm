@@ -1260,3 +1260,15 @@ flex-shrink: 0; // 縮まないようにする
 display: none;
 
 }
+/* 初期状態（非表示） */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+/* 表示状態になったら */
+.is-in-view.fade-in-up {
+  opacity: 1;
+  transform: translateY(0);
+}
